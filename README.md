@@ -40,13 +40,13 @@ Le utilità sono 212: 211 macro e una subroutine (`FP_ERROR_HANDLER`). Le macro 
 | [`fp_constants.asm`](#modulo-fp_constants) | [`m_Load_FAC_with`](#utilita-m_load_fac_with) | Carica FAC con 5 byte MBF |
 | | [`m_Load_ARG_with`](#utilita-m_load_arg_with) | Carica ARG con 5 byte MBF |
 | | [`m_Load_FAC_with_0`](#utilita-m_load_fac_with_0) | Carica FAC con 0 |
-| | [`m_Load_FAC_with_0_25`](#utilita-m_load_fac_with_0_25) | Carica FAC con 0,25 |
-| | [`m_Load_FAC_with_0_5`](#utilita-m_load_fac_with_0_5) | Carica FAC con 0,5 |
+| | [`m_Load_FAC_with_0_25`](#utilita-m_load_fac_with_0_25) | Carica FAC con 0.25 |
+| | [`m_Load_FAC_with_0_5`](#utilita-m_load_fac_with_0_5) | Carica FAC con 0.5 |
 | | [`m_Load_FAC_with_1`](#utilita-m_load_fac_with_1) | Carica FAC con 1 |
 | | [`m_Load_FAC_with_MINUS_1`](#utilita-m_load_fac_with_minus_1) | Carica FAC con -1 |
 | | [`m_Load_FAC_with_2`](#utilita-m_load_fac_with_2) | Carica FAC con 2 |
 | | [`m_Load_FAC_with_10`](#utilita-m_load_fac_with_10) | Carica FAC con 10 |
-| | [`m_Load_FAC_with_0_1`](#utilita-m_load_fac_with_0_1) | Carica FAC con 0,1 |
+| | [`m_Load_FAC_with_0_1`](#utilita-m_load_fac_with_0_1) | Carica FAC con 0.1 |
 | | [`m_Load_FAC_with_PI4`](#utilita-m_load_fac_with_pi4) | Carica FAC con π/4 |
 | | [`m_Load_FAC_with_PI2`](#utilita-m_load_fac_with_pi2) | Carica FAC con π/2 |
 | | [`m_Load_FAC_with_PI`](#utilita-m_load_fac_with_pi) | Carica FAC con π |
@@ -64,13 +64,13 @@ Le utilità sono 212: 211 macro e una subroutine (`FP_ERROR_HANDLER`). Le macro 
 | | [`m_Load_FAC_with_MINR`](#utilita-m_load_fac_with_minr) | Carica FAC con MINR |
 | | [`m_Load_FAC_with_MAXR`](#utilita-m_load_fac_with_maxr) | Carica FAC con MAXR |
 | | [`m_Load_ARG_with_0`](#utilita-m_load_arg_with_0) | Carica ARG con 0 |
-| | [`m_Load_ARG_with_0_25`](#utilita-m_load_arg_with_0_25) | Carica ARG con 0,25 |
-| | [`m_Load_ARG_with_0_5`](#utilita-m_load_arg_with_0_5) | Carica ARG con 0,5 |
+| | [`m_Load_ARG_with_0_25`](#utilita-m_load_arg_with_0_25) | Carica ARG con 0.25 |
+| | [`m_Load_ARG_with_0_5`](#utilita-m_load_arg_with_0_5) | Carica ARG con 0.5 |
 | | [`m_Load_ARG_with_1`](#utilita-m_load_arg_with_1) | Carica ARG con 1 |
 | | [`m_Load_ARG_with_MINUS_1`](#utilita-m_load_arg_with_minus_1) | Carica ARG con -1 |
 | | [`m_Load_ARG_with_2`](#utilita-m_load_arg_with_2) | Carica ARG con 2 |
 | | [`m_Load_ARG_with_10`](#utilita-m_load_arg_with_10) | Carica ARG con 10 |
-| | [`m_Load_ARG_with_0_1`](#utilita-m_load_arg_with_0_1) | Carica ARG con 0,1 |
+| | [`m_Load_ARG_with_0_1`](#utilita-m_load_arg_with_0_1) | Carica ARG con 0.1 |
 | | [`m_Load_ARG_with_PI4`](#utilita-m_load_arg_with_pi4) | Carica ARG con π/4 |
 | | [`m_Load_ARG_with_PI2`](#utilita-m_load_arg_with_pi2) | Carica ARG con π/2 |
 | | [`m_Load_ARG_with_PI`](#utilita-m_load_arg_with_pi) | Carica ARG con π |
@@ -237,6 +237,10 @@ La cartella `fp` sta nella cartella delle librerie di C64Studio, accanto alle al
 
 `fp.asm` contiene solo l'intestazione, le note d'uso e le righe `!source` degli altri moduli e dei file di simboli `<c64/errors.asm>` e `<c64/symbols.asm>`: il programma non deve includere altro. Le macro dei moduli si assemblano solo quando vengono invocate, con `+nome`, seguito dai parametri se ne hanno.
 
+| Modulo | Include da sé | File da includere prima |
+|---|---|---|
+| `fp.asm` | `<c64/errors.asm>`, `<c64/symbols.asm>`, `<fp/fp_arith.asm>`, `<fp/fp_boolean.asm>`, `<fp/fp_compare.asm>`, `<fp/fp_constants.asm>`, `<fp/fp_error.asm>`, `<fp/fp_integers.asm>`, `<fp/fp_io.asm>`, `<fp/fp_memory.asm>`, `<fp/fp_poly.asm>`, `<fp/fp_power.asm>`, `<fp/fp_random.asm>`, `<fp/fp_scratch.asm>`, `<fp/fp_transcend.asm>`, `<fp/fp_trig.asm>`, `<fp/fp_unary.asm>` | Nessuno |
+
 I nomi delle macro dicono dove si trova l'altro operando: `_ARG` e `_FAC` indicano i registri in pagina zero, `_Mem` un indirizzo assoluto (parametro `.addr_`), `_Ptr` un indirizzo puntato da un puntatore in pagina zero (parametro `.ptr_`). Il risultato è in `FAC`, salvo dove il contratto indica altro.
 
 ### Configurazione
@@ -276,6 +280,8 @@ Le altre note riguardano singole funzioni e sono richiamate dalle schede.
 ## fp.asm
 
 Modulo principale della libreria: non contiene utilità. Include gli altri moduli e raccoglie le note d'uso.
+
+Requisiti di pagina zero: `__FP_SAVED_SP`, `_SCRATCH_1`, `_SCRATCH_2`.
 
 ### Note d'uso di `fp.asm`
 
@@ -347,19 +353,19 @@ Il bug riguarda ogni macro che moltiplica, direttamente o attraverso la ROM: `m_
 
 Fonte: https://www.c64-wiki.com/wiki/Multiply_bug
 
-Nella sola moltiplicazione si può ridurre il problema scambiando i due operandi: su 20.000 coppie casuali lo scambio corregge circa il 94% dei casi in cui un ordine è sbagliato, ma non tutti, perché in 300 casi sono sbagliati entrambi. Dopo lo scambio `ARISGN` va ricalcolato (`FACSGN` xor `ARGSGN`). Per le altre funzioni il rimedio non si applica: l'ordine delle moltiplicazioni interne non dipende dal chiamante.
+Nella sola moltiplicazione si può ridurre il problema scambiando i due operandi: su 20 000 coppie casuali lo scambio corregge circa il 94% dei casi in cui un ordine è sbagliato, ma non tutti, perché in 300 casi sono sbagliati entrambi. Dopo lo scambio `ARISGN` va ricalcolato (`FACSGN` xor `ARGSGN`). Per le altre funzioni il rimedio non si applica: l'ordine delle moltiplicazioni interne non dipende dal chiamante.
 
 <a id="nota-fp-09"></a>
 #### Nota #09
 
-SQR calcola la radice tramite LOG ed EXP, quindi ne eredita i polinomi e il bug della moltiplicazione ([Nota #08](#nota-fp-08)). Il wiki dichiara un accordo col valore vero fino a 30 bit (25 bit per pochi ingressi). Nelle nostre misure, su 1.500 ingressi casuali, la mediana è 33,0 bit e il minimo 31,0 (la mantissa ha 32 bit). SQR(0) = 0; un argomento negativo dà ?ILLEGAL QUANTITY.
+SQR calcola la radice tramite LOG ed EXP, quindi ne eredita i polinomi e il bug della moltiplicazione ([Nota #08](#nota-fp-08)). Il wiki dichiara un accordo col valore vero fino a 30 bit (25 bit per pochi ingressi). Nelle nostre misure, su 1500 ingressi casuali, la mediana è 33.0 bit e il minimo 31.0 (la mantissa ha 32 bit). SQR(0) = 0; un argomento negativo dà ?ILLEGAL QUANTITY.
 
 Fonte: https://www.c64-wiki.com/wiki/SQR
 
 <a id="nota-fp-10"></a>
 #### Nota #10
 
-RND dipende dal segno di `FAC`. Con `FAC` > 0 restituisce il numero successivo della sequenza (seme x 11879546 + 3,927677739E-8, poi i byte della mantissa vengono scambiati). Con `FAC` < 0 `FAC` diventa il nuovo seme, e lo stesso seme dà sempre la stessa sequenza: utile per collaudi e debug. Il risultato di quella chiamata è il seme stesso, quindi con un seme piccolo è un numero molto piccolo (RND(-1) = 2,99E-8). Con `FAC` = 0 il seme viene ricavato dai timer A e dall'orologio TOD del CIA #1 (`$DC04`, `$DC05`, `$DC08`, `$DC09`): questi registri non sono inizializzati all'avvio e alcuni lavorano in BCD, quindi non assumono tutti i valori possibili e lo spazio dei semi si riduce.
+RND dipende dal segno di `FAC`. Con `FAC` > 0 restituisce il numero successivo della sequenza (seme x 11 879 546 + 3.927677739E-8, poi i byte della mantissa vengono scambiati). Con `FAC` < 0 `FAC` diventa il nuovo seme, e lo stesso seme dà sempre la stessa sequenza: utile per collaudi e debug. Il risultato di quella chiamata è il seme stesso, quindi con un seme piccolo è un numero molto piccolo (RND(-1) = 2.99E-8). Con `FAC` = 0 il seme viene ricavato dai timer A e dall'orologio TOD del CIA #1 (`$DC04`, `$DC05`, `$DC08`, `$DC09`): questi registri non sono inizializzati all'avvio e alcuni lavorano in BCD, quindi non assumono tutti i valori possibili e lo spazio dei semi si riduce.
 
 `m_Randomize` usa come seme -TI: TI ha 24 bit, quindi 8 bit della mantissa a 32 bit sono sempre zero. Per aggiungere casualità, il numero ottenuto (tra 0 e 1) viene poi negato e usato per reinizializzare il generatore.
 
@@ -370,49 +376,49 @@ Fonte: https://www.c64-wiki.com/wiki/RND
 <a id="nota-fp-11"></a>
 #### Nota #11
 
-LOG(V) dà ?ILLEGAL QUANTITY per V <= 0; LOG(1) = 0. Il wiki dichiara un accordo col valore vero fino a 29 bit (24 per pochi ingressi), con peggioramento vicino a V = 1. Nelle nostre misure su 1.500 ingressi casuali la mediana è 31,9 bit e il minimo 22,8 (26 ingressi sotto 27 bit). I casi peggiori sono vicini a 1: LOG(0,99) dà 24,4 bit, LOG(1,01) 26,9, LOG(1,1) 27,7. L'errore assoluto resta piccolo, ma il risultato è piccolo, perciò cresce l'errore relativo. Il bug della moltiplicazione ([Nota #08](#nota-fp-08)) non è la causa: con la ROM corretta i valori sono identici. La potenza (`m_Power_*`) passa da LOG ed EXP e ne eredita i limiti.
+LOG(V) dà ?ILLEGAL QUANTITY per V <= 0; LOG(1) = 0. Il wiki dichiara un accordo col valore vero fino a 29 bit (24 per pochi ingressi), con peggioramento vicino a V = 1. Nelle nostre misure su 1500 ingressi casuali la mediana è 31.9 bit e il minimo 22.8 (26 ingressi sotto 27 bit). I casi peggiori sono vicini a 1: LOG(0.99) dà 24.4 bit, LOG(1.01) 26.9, LOG(1.1) 27.7. L'errore assoluto resta piccolo, ma il risultato è piccolo, perciò cresce l'errore relativo. Il bug della moltiplicazione ([Nota #08](#nota-fp-08)) non è la causa: con la ROM corretta i valori sono identici. La potenza (`m_Power_*`) passa da LOG ed EXP e ne eredita i limiti.
 
 Fonte: https://www.c64-wiki.com/wiki/LOG
 
 <a id="nota-fp-12"></a>
 #### Nota #12
 
-EXP(V) dà ?OVERFLOW per V oltre circa 88,03 (il wiki indica 89,03, ma EXP(89,02) dà già errore; EXP(88) = 1,65E38). Per argomenti molto negativi il risultato è 0 senza errore (provati -89 e -100). Il wiki dichiara un accordo col valore vero fino a 30 bit (26 per pochi ingressi); nelle nostre misure su 1.500 ingressi casuali la mediana è 33,0 bit e il minimo 30,9. EXP(0) = 1. La potenza (`m_Power_*`) passa da LOG ed EXP: stessi limiti.
+EXP(V) dà ?OVERFLOW per V oltre circa 88.03 (il wiki indica 89.03, ma EXP(89.02) dà già errore; EXP(88) = 1.65E38). Per argomenti molto negativi il risultato è 0 senza errore (provati -89 e -100). Il wiki dichiara un accordo col valore vero fino a 30 bit (26 per pochi ingressi); nelle nostre misure su 1500 ingressi casuali la mediana è 33.0 bit e il minimo 30.9. EXP(0) = 1. La potenza (`m_Power_*`) passa da LOG ed EXP: stessi limiti.
 
 Fonte: https://www.c64-wiki.com/wiki/EXP
 
 <a id="nota-fp-13"></a>
 #### Nota #13
 
-SIN riduce l'argomento a un quarto di periodo e valuta un polinomio. Il wiki dichiara un accordo col valore vero fino a 30 bit tra circa -2,6 e +2,6, con peggioramento oltre per l'imprecisione di PI ([Nota #17](#nota-fp-17)) e per pochi ingressi fino a 24 bit. Nelle nostre misure su 1.500 ingressi casuali la mediana è 32,1 bit e il minimo 27,5. Per argomenti piccoli l'errore relativo sale: da 4E-11 per 0,04 a 3,4E-9 per 1E-4 (da 34 a 28 bit), perché i coefficienti del polinomio non sono esatti. Un argomento fuori dai limiti della virgola mobile dà ?OVERFLOW; SIN stessa non ne ha altri.
+SIN riduce l'argomento a un quarto di periodo e valuta un polinomio. Il wiki dichiara un accordo col valore vero fino a 30 bit tra circa -2.6 e +2.6, con peggioramento oltre per l'imprecisione di PI ([Nota #17](#nota-fp-17)) e per pochi ingressi fino a 24 bit. Nelle nostre misure su 1500 ingressi casuali la mediana è 32.1 bit e il minimo 27.5. Per argomenti piccoli l'errore relativo sale: da 4E-11 per 0.04 a 3.4E-9 per 1E-4 (da 34 a 28 bit), perché i coefficienti del polinomio non sono esatti. Un argomento fuori dai limiti della virgola mobile dà ?OVERFLOW; SIN stessa non ne ha altri.
 
 Fonte: https://www.c64-wiki.com/wiki/SIN
 
 <a id="nota-fp-14"></a>
 #### Nota #14
 
-COS(V) è calcolata come SIN(V + PI/2): valgono quindi i limiti della [Nota #13](#nota-fp-13) e il bug della moltiplicazione ([Nota #08](#nota-fp-08)). Il wiki dichiara un accordo col valore vero fino a 29 bit, con pochi ingressi a 24 e peggioramento vicino ai multipli dispari di PI/2. Nelle nostre misure su 1.500 ingressi casuali la mediana è 31,8 bit e il minimo 27,7. La simmetria non è esatta: COS(0,9) - COS(-0,9) = -2 x 2^-32 (il wiki riporta 3 x 2^-32).
+COS(V) è calcolata come SIN(V + PI/2): valgono quindi i limiti della [Nota #13](#nota-fp-13) e il bug della moltiplicazione ([Nota #08](#nota-fp-08)). Il wiki dichiara un accordo col valore vero fino a 29 bit, con pochi ingressi a 24 e peggioramento vicino ai multipli dispari di PI/2. Nelle nostre misure su 1500 ingressi casuali la mediana è 31.8 bit e il minimo 27.7. La simmetria non è esatta: COS(0.9) - COS(-0.9) = -2 x 2^-32 (il wiki riporta 3 x 2^-32).
 
 Fonte: https://www.c64-wiki.com/wiki/COS
 
 <a id="nota-fp-15"></a>
 #### Nota #15
 
-TAN(V) è calcolata come SIN(V)/COS(V): eredita i limiti di entrambe e perde precisione dove le perdono loro. Il wiki dichiara un accordo di circa 29 bit (25 per pochi ingressi). Nelle nostre misure su 1.500 ingressi casuali la mediana è 32,2 bit e il minimo 27,3. Se COS vale 0 la divisione dà ?DIVISION BY ZERO (il wiki cita TAN(PI/2)); questo è l'unico errore di TAN oltre a ?OVERFLOW. TAN(PI) non è esattamente 0: con PI arrotondato a 3,14159265359 abbiamo misurato 0, il wiki riporta -7,3E-10.
+TAN(V) è calcolata come SIN(V)/COS(V): eredita i limiti di entrambe e perde precisione dove le perdono loro. Il wiki dichiara un accordo di circa 29 bit (25 per pochi ingressi). Nelle nostre misure su 1500 ingressi casuali la mediana è 32.2 bit e il minimo 27.3. Se COS vale 0 la divisione dà ?DIVISION BY ZERO (il wiki cita TAN(PI/2)); questo è l'unico errore di TAN oltre a ?OVERFLOW. TAN(PI) non è esattamente 0: con PI arrotondato a 3.14159265359 abbiamo misurato 0, il wiki riporta -7.3E-10.
 
 Fonte: https://www.c64-wiki.com/wiki/TAN
 
 <a id="nota-fp-16"></a>
 #### Nota #16
 
-ATN usa la simmetria dispari e, per \|V\| > 1, l'identità PI/2 - ATN(1/V); per 0 <= V <= 1 valuta un polinomio. Il wiki dichiara un accordo col valore vero fino a 30 bit (25 per pochi ingressi). Nelle nostre misure su 1.500 ingressi casuali la mediana è 32,1 bit e il minimo 30,6. ATN non dà errori a parte ?OVERFLOW per argomenti fuori dai limiti della virgola mobile.
+ATN usa la simmetria dispari e, per \|V\| > 1, l'identità PI/2 - ATN(1/V); per 0 <= V <= 1 valuta un polinomio. Il wiki dichiara un accordo col valore vero fino a 30 bit (25 per pochi ingressi). Nelle nostre misure su 1500 ingressi casuali la mediana è 32.1 bit e il minimo 30.6. ATN non dà errori a parte ?OVERFLOW per argomenti fuori dai limiti della virgola mobile.
 
 Fonte: https://www.c64-wiki.com/wiki/ATN
 
 <a id="nota-fp-17"></a>
 #### Nota #17
 
-La costante PI della ROM (5 byte `$82` `$49` `$0F` `$DA` `$A1` a `$AEA8`) vale 3,1415926525 invece di 3,1415926536: l'ultimo byte `$A1` è meno preciso del valore più vicino, che si ottiene con `$A2` (errore -1,2E-10 invece di -1,05E-9). 2\*PI e PI/2, usate da SIN, COS e TAN, hanno invece l'ultimo byte `$A2`. Di conseguenza ATN(1)\*4 dà 3,1415926525 (non 3,1415266 come riporta il wiki, che è sbagliato). Per usare il valore più vicino a pi greco si può caricare una propria costante (`$82` `$49` `$0F` `$DA` `$A2`).
+La costante PI della ROM (5 byte `$82` `$49` `$0F` `$DA` `$A1` a `$AEA8`) vale 3.1415926525 invece di 3.1415926536: l'ultimo byte `$A1` è meno preciso del valore più vicino, che si ottiene con `$A2` (errore -1.2E-10 invece di -1.05E-9). 2\*PI e PI/2, usate da SIN, COS e TAN, hanno invece l'ultimo byte `$A2`. Di conseguenza ATN(1)\*4 dà 3.1415926525 (non 3.1415266 come riporta il wiki, che è sbagliato). Per usare il valore più vicino a pi greco si può caricare una propria costante (`$82` `$49` `$0F` `$DA` `$A2`).
 
 Fonte: https://www.c64-wiki.com/wiki/Pi
 
@@ -717,9 +723,9 @@ Macro per gli operatori booleani bit a bit AND, OR e NOT sui numeri in virgola m
 
 Macro: `m_AND_FAC_with_ARG`, `m_AND_FAC_with_Mem`, `m_AND_FAC_with_Ptr`.
 
-Entrambi i numeri sono convertiti in interi a 16 bit con segno, arrotondati per difetto (-1,5 diventa -2); il risultato è riconvertito in virgola mobile.
+Entrambi i numeri sono convertiti in interi a 16 bit con segno, arrotondati per difetto (-1.5 diventa -2); il risultato è riconvertito in virgola mobile.
 
-Chiama la routine `ANDOP` della ROM del BASIC. Se `FAC` o l'altro numero è fuori dall'intervallo da -32768 a 32767, la ROM segnala ILLEGAL QUANTITY ERROR e non ritorna al chiamante: vedi [Nota #07 di `fp/fp.asm`](#nota-fp-07).
+Chiama la routine `ANDOP` della ROM del BASIC. Se `FAC` o l'altro numero è fuori dall'intervallo da -32768 a 32 767, la ROM segnala ILLEGAL QUANTITY ERROR e non ritorna al chiamante: vedi [Nota #07 di `fp/fp.asm`](#nota-fp-07).
 
 La ROM altera queste celle di lavoro, il cui contenuto non è garantito dopo la chiamata: `$07`-`$08`, `$0B` e `$0D` (`VALTYP`, posto a zero).
 
@@ -787,9 +793,9 @@ Se `__PRESERVE_ARG` = 1 la macro salva `ARG` in `_SCRATCH_2` prima di caricare i
 
 Macro: `m_OR_FAC_with_ARG`, `m_OR_FAC_with_Mem`, `m_OR_FAC_with_Ptr`.
 
-Entrambi i numeri sono convertiti in interi a 16 bit con segno, arrotondati per difetto (-1,5 diventa -2); il risultato è riconvertito in virgola mobile.
+Entrambi i numeri sono convertiti in interi a 16 bit con segno, arrotondati per difetto (-1.5 diventa -2); il risultato è riconvertito in virgola mobile.
 
-Chiama la routine `OROP` della ROM del BASIC. Se `FAC` o l'altro numero è fuori dall'intervallo da -32768 a 32767, la ROM segnala ILLEGAL QUANTITY ERROR e non ritorna al chiamante: vedi [Nota #07 di `fp/fp.asm`](#nota-fp-07).
+Chiama la routine `OROP` della ROM del BASIC. Se `FAC` o l'altro numero è fuori dall'intervallo da -32768 a 32 767, la ROM segnala ILLEGAL QUANTITY ERROR e non ritorna al chiamante: vedi [Nota #07 di `fp/fp.asm`](#nota-fp-07).
 
 La ROM altera queste celle di lavoro, il cui contenuto non è garantito dopo la chiamata: `$07`-`$08`, `$0B` e `$0D` (`VALTYP`, posto a zero).
 
@@ -857,7 +863,7 @@ Se `__PRESERVE_ARG` = 1 la macro salva `ARG` in `_SCRATCH_2` prima di caricare i
 
 Macro: `m_NOT_FAC`, `m_NOT_ARG`, `m_NOT_Mem`, `m_NOT_Ptr`.
 
-Il numero è convertito in un intero a 16 bit con segno, arrotondato per difetto (-1,5 diventa -2); il risultato, che vale -n-1, è riconvertito in virgola mobile.
+Il numero è convertito in un intero a 16 bit con segno, arrotondato per difetto (-1.5 diventa -2); il risultato, che vale -n-1, è riconvertito in virgola mobile.
 
 La ROM altera la cella di lavoro `$0D` (`VALTYP`), che viene posta a zero.
 
@@ -875,7 +881,7 @@ Contratto comune a tutte le macro:
 
 Esegue un NOT bit a bit su `FAC` e lascia il risultato in `FAC`: `FAC` = NOT `FAC`.
 
-Chiama la routine `NOTOP` della ROM del BASIC. Se il numero è fuori dall'intervallo da -32768 a 32767, la ROM segnala ILLEGAL QUANTITY ERROR e non ritorna al chiamante: vedi [Nota #07 di `fp/fp.asm`](#nota-fp-07).
+Chiama la routine `NOTOP` della ROM del BASIC. Se il numero è fuori dall'intervallo da -32768 a 32 767, la ROM segnala ILLEGAL QUANTITY ERROR e non ritorna al chiamante: vedi [Nota #07 di `fp/fp.asm`](#nota-fp-07).
 
 | Voce | Specifico di questa macro |
 |---|---|
@@ -891,7 +897,7 @@ Esegue un NOT bit a bit su `ARG` e lascia il risultato in `ARG`, senza alterare 
 
 Scambia `FAC` e `ARG` con `m_Swap_FAC_and_ARG`, esegue il NOT su `FAC` e li scambia di nuovo.
 
-Chiama la routine `NOTOP` della ROM del BASIC. Se il numero è fuori dall'intervallo da -32768 a 32767, la ROM segnala ILLEGAL QUANTITY ERROR e non ritorna al chiamante: vedi [Nota #07 di `fp/fp.asm`](#nota-fp-07). In questo caso `FAC` e `ARG` restano scambiati.
+Chiama la routine `NOTOP` della ROM del BASIC. Se il numero è fuori dall'intervallo da -32768 a 32 767, la ROM segnala ILLEGAL QUANTITY ERROR e non ritorna al chiamante: vedi [Nota #07 di `fp/fp.asm`](#nota-fp-07). In questo caso `FAC` e `ARG` restano scambiati.
 
 | Voce | Specifico di questa macro |
 |---|---|
@@ -910,7 +916,7 @@ Esegue un NOT bit a bit sul numero in formato MBF che si trova a un indirizzo as
 
 Carica prima il numero in `FAC` con `m_Load_FAC_from_Mem`, che altera `INDEX`.
 
-Chiama la routine `NOTOP` della ROM del BASIC. Se il numero è fuori dall'intervallo da -32768 a 32767, la ROM segnala ILLEGAL QUANTITY ERROR e non ritorna al chiamante: vedi [Nota #07 di `fp/fp.asm`](#nota-fp-07).
+Chiama la routine `NOTOP` della ROM del BASIC. Se il numero è fuori dall'intervallo da -32768 a 32 767, la ROM segnala ILLEGAL QUANTITY ERROR e non ritorna al chiamante: vedi [Nota #07 di `fp/fp.asm`](#nota-fp-07).
 
 | Voce | Specifico di questa macro |
 |---|---|
@@ -929,7 +935,7 @@ Esegue un NOT bit a bit sul numero in formato MBF che si trova all'indirizzo a c
 
 Carica prima il numero in `FAC` con `m_Load_FAC_from_Ptr`, che altera `INDEX`.
 
-Chiama la routine `NOTOP` della ROM del BASIC. Se il numero è fuori dall'intervallo da -32768 a 32767, la ROM segnala ILLEGAL QUANTITY ERROR e non ritorna al chiamante: vedi [Nota #07 di `fp/fp.asm`](#nota-fp-07).
+Chiama la routine `NOTOP` della ROM del BASIC. Se il numero è fuori dall'intervallo da -32768 a 32 767, la ROM segnala ILLEGAL QUANTITY ERROR e non ritorna al chiamante: vedi [Nota #07 di `fp/fp.asm`](#nota-fp-07).
 
 | Voce | Specifico di questa macro |
 |---|---|
@@ -1078,7 +1084,7 @@ Scrive i 5 byte della costante (`$00`, `$00`, `$00`, `$00`, `$00`) con `m_Load_F
 <a id="utilita-m_load_fac_with_0_25"></a>
 #### m_Load_FAC_with_0_25
 
-Carica `FAC` con la costante 0,25. `FACOV` viene azzerato.
+Carica `FAC` con la costante 0.25. `FACOV` viene azzerato.
 
 Legge la costante da `FR4` (`$E2EA`) nella ROM del BASIC con `m_Load_FAC_from_Mem`, che altera anche `INDEX`: il suo contenuto non è garantito dopo la chiamata.
 
@@ -1091,7 +1097,7 @@ Legge la costante da `FR4` (`$E2EA`) nella ROM del BASIC con `m_Load_FAC_from_Me
 <a id="utilita-m_load_fac_with_0_5"></a>
 #### m_Load_FAC_with_0_5
 
-Carica `FAC` con la costante 0,5. `FACOV` viene azzerato.
+Carica `FAC` con la costante 0.5. `FACOV` viene azzerato.
 
 Legge la costante da `FHALF` (`$BF11`) nella ROM del BASIC con `m_Load_FAC_from_Mem`, che altera anche `INDEX`: il suo contenuto non è garantito dopo la chiamata.
 
@@ -1156,7 +1162,7 @@ Legge la costante da `TENC` (`$BAF9`) nella ROM del BASIC con `m_Load_FAC_from_M
 <a id="utilita-m_load_fac_with_0_1"></a>
 #### m_Load_FAC_with_0_1
 
-Carica `FAC` con la costante 0,1. `FACOV` viene azzerato.
+Carica `FAC` con la costante 0.1. `FACOV` viene azzerato.
 
 Scrive i 5 byte della costante (`$7D`, `$4C`, `$CC`, `$CC`, `$CD`) con `m_Load_FAC_with`, senza chiamare la ROM del BASIC.
 
@@ -1344,7 +1350,7 @@ Carica `FAC` con l'epsilon di macchina. `FACOV` viene azzerato.
 
 Scrive i 5 byte della costante (`$62`, `$00`, `$00`, `$00`, `$00`) con `m_Load_FAC_with`, senza chiamare la ROM del BASIC.
 
-Vale 4,65661287\*10^-10 ed è la differenza tra 1 e il numero in virgola mobile successivo.
+Vale 4.65661287\*10^-10 ed è la differenza tra 1 e il numero in virgola mobile successivo.
 
 | Voce | Specifico di questa macro |
 |---|---|
@@ -1359,7 +1365,7 @@ Carica `FAC` con il più piccolo numero rappresentabile (`MINR`). `FACOV` viene 
 
 Scrive i 5 byte della costante (`$01`, `$00`, `$00`, `$00`, `$00`) con `m_Load_FAC_with`, senza chiamare la ROM del BASIC.
 
-Vale 2,93873588\*10^-39 ed è il più piccolo numero diverso da zero rappresentabile in formato MBF.
+Vale 2.93873588\*10^-39 ed è il più piccolo numero diverso da zero rappresentabile in formato MBF.
 
 | Voce | Specifico di questa macro |
 |---|---|
@@ -1374,7 +1380,7 @@ Carica `FAC` con il più grande numero rappresentabile (`MAXR`). `FACOV` viene a
 
 Scrive i 5 byte della costante (`$FF`, `$7F`, `$FF`, `$FF`, `$FF`) con `m_Load_FAC_with`, senza chiamare la ROM del BASIC.
 
-Vale 1,70141183\*10^38 ed è il più grande numero rappresentabile in formato MBF.
+Vale 1.70141183\*10^38 ed è il più grande numero rappresentabile in formato MBF.
 
 | Voce | Specifico di questa macro |
 |---|---|
@@ -1412,7 +1418,7 @@ Scrive i 5 byte della costante (`$00`, `$00`, `$00`, `$00`, `$00`) con `m_Load_A
 <a id="utilita-m_load_arg_with_0_25"></a>
 #### m_Load_ARG_with_0_25
 
-Carica `ARG` con la costante 0,25. `FAC` non cambia.
+Carica `ARG` con la costante 0.25. `FAC` non cambia.
 
 Legge la costante da `FR4` (`$E2EA`) nella ROM del BASIC con `m_Load_ARG_from_Mem`, che altera anche `INDEX`: il suo contenuto non è garantito dopo la chiamata.
 
@@ -1428,7 +1434,7 @@ La routine `CONUPK` della ROM aggiorna anche `ARISGN`: il bit #7 vale 1 se i seg
 <a id="utilita-m_load_arg_with_0_5"></a>
 #### m_Load_ARG_with_0_5
 
-Carica `ARG` con la costante 0,5. `FAC` non cambia.
+Carica `ARG` con la costante 0.5. `FAC` non cambia.
 
 Legge la costante da `FHALF` (`$BF11`) nella ROM del BASIC con `m_Load_ARG_from_Mem`, che altera anche `INDEX`: il suo contenuto non è garantito dopo la chiamata.
 
@@ -1502,7 +1508,7 @@ La routine `CONUPK` della ROM aggiorna anche `ARISGN`: il bit #7 vale 1 se i seg
 <a id="utilita-m_load_arg_with_0_1"></a>
 #### m_Load_ARG_with_0_1
 
-Carica `ARG` con la costante 0,1. `FAC` non cambia.
+Carica `ARG` con la costante 0.1. `FAC` non cambia.
 
 Scrive i 5 byte della costante (`$7D`, `$4C`, `$CC`, `$CC`, `$CD`) con `m_Load_ARG_with`, senza chiamare la ROM del BASIC.
 
@@ -1708,7 +1714,7 @@ Carica `ARG` con l'epsilon di macchina. `FAC` non cambia.
 
 Scrive i 5 byte della costante (`$62`, `$00`, `$00`, `$00`, `$00`) con `m_Load_ARG_with`, senza chiamare la ROM del BASIC.
 
-Vale 4,65661287\*10^-10 ed è la differenza tra 1 e il numero in virgola mobile successivo.
+Vale 4.65661287\*10^-10 ed è la differenza tra 1 e il numero in virgola mobile successivo.
 
 | Voce | Specifico di questa macro |
 |---|---|
@@ -1723,7 +1729,7 @@ Carica `ARG` con il più piccolo numero rappresentabile (`MINR`). `FAC` non camb
 
 Scrive i 5 byte della costante (`$01`, `$00`, `$00`, `$00`, `$00`) con `m_Load_ARG_with`, senza chiamare la ROM del BASIC.
 
-Vale 2,93873588\*10^-39 ed è il più piccolo numero diverso da zero rappresentabile in formato MBF.
+Vale 2.93873588\*10^-39 ed è il più piccolo numero diverso da zero rappresentabile in formato MBF.
 
 | Voce | Specifico di questa macro |
 |---|---|
@@ -1738,7 +1744,7 @@ Carica `ARG` con il più grande numero rappresentabile (`MAXR`). `FAC` non cambi
 
 Scrive i 5 byte della costante (`$FF`, `$7F`, `$FF`, `$FF`, `$FF`) con `m_Load_ARG_with`, senza chiamare la ROM del BASIC.
 
-Vale 1,70141183\*10^38 ed è il più grande numero rappresentabile in formato MBF.
+Vale 1.70141183\*10^38 ed è il più grande numero rappresentabile in formato MBF.
 
 | Voce | Specifico di questa macro |
 |---|---|
@@ -2706,7 +2712,7 @@ Contratto comune a tutte le macro:
 <a id="utilita-m_convert_fac_into_int32"></a>
 #### m_Convert_FAC_into_INT32
 
-Converte il numero in virgola mobile di `FAC` in un intero a 32 bit con segno, arrotondato per difetto (verso -infinito, tenendo conto anche di `FACOV`). Il numero deve stare nell'intervallo da -2147483647 a 2147483647; fuori da questo intervallo il risultato è indefinito.
+Converte il numero in virgola mobile di `FAC` in un intero a 32 bit con segno, arrotondato per difetto (verso -infinito, tenendo conto anche di `FACOV`). Il numero deve stare nell'intervallo da -2147483647 a 2 147 483 647; fuori da questo intervallo il risultato è indefinito.
 
 L'intero, in complemento a due, va nei 4 byte della mantissa, con il MSB in `FACHO`. Per ottenere un intero a 24, 16 o 8 bit, se il valore ci sta, si leggono gli ultimi 3, 2 o 1 byte, cioè da `FACMOH`, da `FACMO` o `FACLO`. `FACEXP` e `FACSGN` non cambiano, ma `FAC` non è più un numero valido; `FACOV` contiene i bit scartati.
 
@@ -2722,7 +2728,7 @@ Chiama la routine `QINT` della ROM del BASIC, che usa la cella `$68` (byte di ov
 <a id="utilita-m_convert_arg_into_int32"></a>
 #### m_Convert_ARG_into_INT32
 
-Converte il numero in virgola mobile di `ARG` in un intero a 32 bit con segno, arrotondato per difetto (verso -infinito). Il numero deve stare nell'intervallo da -2147483647 a 2147483647; fuori da questo intervallo il risultato è indefinito.
+Converte il numero in virgola mobile di `ARG` in un intero a 32 bit con segno, arrotondato per difetto (verso -infinito). Il numero deve stare nell'intervallo da -2147483647 a 2 147 483 647; fuori da questo intervallo il risultato è indefinito.
 
 L'intero, in complemento a due, va nei 4 byte della mantissa di `ARG`, con il MSB in `ARGHO`. Per ottenere un intero a 24, 16 o 8 bit, se il valore ci sta, si leggono gli ultimi 3, 2 o 1 byte, cioè da `ARGMOH`, da `ARGMO` o `ARGLO`. `ARGEXP` e `ARGSGN` non cambiano, ma `ARG` non è più un numero valido. `ARISGN` non viene aggiornato.
 
@@ -3276,7 +3282,7 @@ Carica prima il numero in `ARG` con `m_Load_ARG_from_Ptr`, che aggiorna `ARISGN`
 
 Macro: `m_SQR_FAC`, `m_SQR_ARG`, `m_SQR_Mem`, `m_SQR_Ptr`.
 
-Chiama la routine SQR della ROM del BASIC, che copia `FAC` in `ARG`, carica 0,5 in `FAC` e chiama `FPWRT`: calcola quindi `ARG` ^ 0,5. La radice di zero è zero; se il numero è negativo la ROM segnala ILLEGAL QUANTITY ERROR e non ritorna al chiamante: vedi [Nota #07 di `fp/fp.asm`](#nota-fp-07).
+Chiama la routine SQR della ROM del BASIC, che copia `FAC` in `ARG`, carica 0.5 in `FAC` e chiama `FPWRT`: calcola quindi `ARG` ^ 0.5. La radice di zero è zero; se il numero è negativo la ROM segnala ILLEGAL QUANTITY ERROR e non ritorna al chiamante: vedi [Nota #07 di `fp/fp.asm`](#nota-fp-07).
 
 La ROM altera molte celle di lavoro, il cui contenuto non è garantito dopo la chiamata: `$07`, `INDEX`, `INDEX2`, `RESHO`, `$4E`-`$52`, `$56`, `NUMWRK`, `$67` e `$71`-`$72`.
 
@@ -3557,7 +3563,7 @@ Carica prima il numero in `FAC` con `m_Load_FAC_from_Ptr`, che altera `INDEX`.
 
 Macro: `m_EXP_FAC`, `m_EXP_ARG`, `m_EXP_Mem`, `m_EXP_Ptr`.
 
-Chiama la routine EXP della ROM del BASIC. Se il risultato è troppo grande, cioè per un numero da circa 88,03 in su, la ROM segnala OVERFLOW ERROR e non ritorna al chiamante: vedi [Nota #07 di `fp/fp.asm`](#nota-fp-07); se è troppo piccolo il risultato è zero. EXP(0) vale 1.
+Chiama la routine EXP della ROM del BASIC. Se il risultato è troppo grande, cioè per un numero da circa 88.03 in su, la ROM segnala OVERFLOW ERROR e non ritorna al chiamante: vedi [Nota #07 di `fp/fp.asm`](#nota-fp-07); se è troppo piccolo il risultato è zero. EXP(0) vale 1.
 
 La ROM altera molte celle di lavoro, il cui contenuto non è garantito dopo la chiamata: `$07`, `INDEX`, `RESHO`, `$56`, `NUMWRK`, `$67` e `$71`-`$72`.
 
@@ -4258,7 +4264,7 @@ Contratto comune a tutte le macro:
 <a id="utilita-m_int_fac"></a>
 #### m_INT_FAC
 
-Arrotonda per difetto, verso -infinito, il numero in virgola mobile di `FAC`: 1,2 diventa 1 e -1,2 diventa -2.
+Arrotonda per difetto, verso -infinito, il numero in virgola mobile di `FAC`: 1.2 diventa 1 e -1.2 diventa -2.
 
 Chiama la routine INT della ROM del BASIC.
 
@@ -4272,7 +4278,7 @@ Chiama la routine INT della ROM del BASIC.
 <a id="utilita-m_int_arg"></a>
 #### m_INT_ARG
 
-Arrotonda per difetto, verso -infinito, il numero in virgola mobile di `ARG`: 1,2 diventa 1 e -1,2 diventa -2.
+Arrotonda per difetto, verso -infinito, il numero in virgola mobile di `ARG`: 1.2 diventa 1 e -1.2 diventa -2.
 
 Scambia `FAC` e `ARG` con `m_Swap_FAC_and_ARG`, chiama la routine INT della ROM del BASIC e li scambia di nuovo. Dopo la chiamata `FAC` contiene il valore di prima, arrotondato, e `FACOV` vale zero; `ARISGN` non viene aggiornato. Il contenuto di `_SCRATCH_2` non è garantito dopo la chiamata.
 
@@ -4289,7 +4295,7 @@ Scambia `FAC` e `ARG` con `m_Swap_FAC_and_ARG`, chiama la routine INT della ROM 
 
 Chiamata: `+m_INT_Mem .addr_`
 
-Carica `FAC` con il numero in formato MBF che si trova a un indirizzo assoluto e lo arrotonda per difetto, verso -infinito: 1,2 diventa 1 e -1,2 diventa -2. Il risultato resta in `FAC`.
+Carica `FAC` con il numero in formato MBF che si trova a un indirizzo assoluto e lo arrotonda per difetto, verso -infinito: 1.2 diventa 1 e -1.2 diventa -2. Il risultato resta in `FAC`.
 
 La lettura usa `m_Load_FAC_from_Mem`, che altera anche `INDEX`: il suo contenuto non è garantito dopo la chiamata. Il vecchio contenuto di `FAC` si perde.
 
@@ -4307,7 +4313,7 @@ Chiama la routine INT della ROM del BASIC.
 
 Chiamata: `+m_INT_Ptr .ptr_`
 
-Carica `FAC` con il numero in formato MBF che si trova all'indirizzo a cui punta un puntatore e lo arrotonda per difetto, verso -infinito: 1,2 diventa 1 e -1,2 diventa -2. Il risultato resta in `FAC`.
+Carica `FAC` con il numero in formato MBF che si trova all'indirizzo a cui punta un puntatore e lo arrotonda per difetto, verso -infinito: 1.2 diventa 1 e -1.2 diventa -2. Il risultato resta in `FAC`.
 
 La lettura usa `m_Load_FAC_from_Ptr`, che altera anche `INDEX`: il suo contenuto non è garantito dopo la chiamata. Il vecchio contenuto di `FAC` si perde.
 
